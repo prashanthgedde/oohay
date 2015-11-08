@@ -24,6 +24,7 @@
     "loopback-component-explorer": "^2.1.0",
     "loopback-connector-rest": "^1.1.4",
     "loopback-datasource-juggler": "^2.0.0",
+    "q": "^1.4.1",
     "request": "^2.37.0",
     "serve-static": "^1.10.0",
     "shuffle": "~0.2.1",
