@@ -64,6 +64,7 @@ module.exports = function(app) {
           if (airports.length) {
             paramObj.geo.airport.available = true;
             paramObj.geo.airport.name = airports[0].name;
+            paramObj.geo.airport.muncipality = airports[0].muncipality;
             paramObj.geo.airport.code = airports[0].iata_code;
             paramObj.geo.airport.dist = airports[0].distance;
           }
