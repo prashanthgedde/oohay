@@ -12,7 +12,7 @@ app.controller('HomeCtrl', function($scope, uiGmapGoogleMapApi, $injector){
 
   $scope.start = function(ev){
     return $mdDialog.show({
-      controller: function($scope, $mdDialog, $controller, price){
+      controller: function($scope, $mdDialog, $controller){
         $controller('DialogController', {
           '$scope': $scope,
           '$mdDialog': $mdDialog
