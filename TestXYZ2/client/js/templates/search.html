@@ -1,0 +1,51 @@
+<md-button aria-label="Open demo menu" class="md-fab md-accent md-icon-button fab-button-pull-right-up" ng-click="$mdOpenMenu()">
+  <md-icon md-menu-origin>
+    <i class="material-icons">more_vert</i>
+  </md-icon>
+</md-button>
+
+<md-toolbar md-scroll-shrink>
+  <h2 class="md-title">Search</h2>
+</md-toolbar>
+
+<md-content>
+  <section ng-repeat="(airport_code, items) in results">
+    <md-subheader class="md-primary subheader-item" ng-bind-html="getAirportDetails(airport_code)"></md-subheader>
+    <md-list layout-padding>
+      <md-list-item class="md-3-line" ng-repeat="item in items">
+        <img ng-src="{{image(item.photo)}}" class="list-item" alt="{{item.name}}">
+        <div class="md-list-item-text">
+          <h3>{{item.name}}</h3>
+          <p>
+            Event Price: ${{item.price}}
+          </p>
+          <p>
+            Distance: {{ getValueInMiles(item.geo.dist) }} Miles
+          </p>
+        </div>
+      </md-list-item>
+    </md-list>
+    </md-list>
+  </section>
+</md-content>
+
+<!--
+{
+  "geo": {
+  "airport": {
+  "available": true,
+  "name": "McCarran International Airport",
+  "code": "LAS",
+  "dist": "280.53 km"
+  },
+  "lat": 38.272688535981,
+  "lon": -116.71875,
+  "dist": 501.1993560029527
+  },
+  "name": "2 Day Half Dome Backpack Trip in Yosemite Wilderness",
+  "price": 650,
+  "date": "2015-10-15T18:59:42+00:00",
+  "photo": "/uploads/images/experiences/513fb53d3e269eda5a00001b/516461263e269e813800000e.jpg",
+  "category": "Backpacking/Camping",
+  "desc": "With the hustle and bustle of modern life thousands of feet below and many miles away, time has nothing to do but  slow down.  This gives you ample time to appreciate the Yosemite high country in all its glory. Whether it is the alpine meadows overflowing with wildflowers, or the best crystal clear swimming holes known to mankind, you just can't go wrong.\n\nOur richly experienced guides hope to offer insight into the many facets of back country living. A few examples include the creation of simple delectable meals, ways of streamlining your gear, and the practice of various techniques that will minimize physical strain and allow you to feel at home in the mountains."
+}-->

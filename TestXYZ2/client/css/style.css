@@ -267,3 +267,17 @@ md-checkbox.interest-checkbox .md-container{
 md-checkbox.interest-checkbox .md-label{
   padding-left: 14px;
 }
+
+img.list-item{
+  width: 100px;
+  height: 100px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 16px;
+  box-sizing: content-box;
+}
+
+.subheader-item{
+  padding: 10px;
+  background-color: #efefef;
+}

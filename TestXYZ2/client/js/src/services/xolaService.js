@@ -74,7 +74,7 @@ app.service('XolaService', function($injector) {
   ];
 
   var exports = {};
-  exports.getEvents = function(){
+  exports.fetch = function(){
     return events;
   };
 

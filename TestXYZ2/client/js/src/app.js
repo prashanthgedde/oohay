@@ -47,15 +47,10 @@ var app = angular.module('App', [
         templateUrl: 'js/templates/home.html',
         controller: 'HomeCtrl'
       })
-      .state('digests', {
-        url: '/digests',
-        templateUrl: 'js/templates/digests/index.html',
-        controller: 'DigestCtrl'
-      })
-      .state('workflow', {
-        url: '/digests/:id',
-        templateUrl: 'js/templates/digests/workflow.html',
-        controller: 'DigestWorkflowCtrl'
+      .state('search', {
+        url: '/search/:lat/:lon/:interests',
+        templateUrl: 'js/templates/search.html',
+        controller: 'SearchCtrl'
       });
 
     // if none of the above states are matched, use this as the fallback

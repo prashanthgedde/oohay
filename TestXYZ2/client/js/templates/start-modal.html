@@ -24,7 +24,7 @@
               <md-content class="md-padding">
                 <!--<h3 class="md-display-5">Select Interests</h3>-->
                 <md-checkbox ng-repeat="interest in interests"
-                             ng-model="selected.interests[$index]"
+                             ng-model="selected._interests[$index]"
                              ng-true-value="true"
                              ng-false-value="false"
                              class="interest-checkbox">
@@ -32,22 +32,58 @@
                 </md-checkbox>
               </md-content>
             </md-tab>
-            <md-tab label="three">
+            <md-tab label="Date & Starting Point">
               <md-content class="md-padding">
-                <!--<h3 class="md-display-5">Tab Three</h3>-->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices</p>
+                <h3>Trip Date</h3>
+                <div layout layout-sm="column">
+                  <md-input-container flex>
+                    <label>Start</label>
+                    <input ng-model="selected.dates.start" type="date">
+                  </md-input-container>
+                  <md-input-container flex>
+                    <label>End</label>
+                    <input ng-model="selected.dates.end" type="date">
+                  </md-input-container>
+                </div>
+
+                <h3>Journey starts from</h3>
+                <div layout layout-sm="column">
+                  <md-input-container flex>
+                    <md-autocomplete
+                      md-selected-item="selected.airport"
+                      md-search-text-change="searchTextChange(searchText)"
+                      md-search-text="searchText"
+                      md-selected-item-change="selectedItemChange(item)"
+                      md-items="item in querySearch(searchText)"
+                      md-item-text="getAirportName(item)"
+                      md-min-length="0">
+                      <md-item-template>
+                        <span md-highlight-text="searchText" md-highlight-flags="^i">{{getAirportName(item)}}</span>
+                      </md-item-template>
+                  </md-input-container>
+                </div>
               </md-content>
             </md-tab>
           </md-tabs>
         </md-content>
       </div>
-      <div class="md-actions" layout="row">
+      <div class="md-actions" layout="row" ng-show="showToolbar('default')">
         <span flex></span>
         <md-button ng-click="cancel()" class="md-primary">
           Cancel
         </md-button>
         <md-button ng-click="next()" class="md-primary md-raised">
           Next
+        </md-button>
+      </div>
+
+      <div class="md-actions" layout="row" ng-show="showToolbar('final')">
+        <span flex></span>
+        <md-button ng-click="cancel()" class="md-primary">
+          Cancel
+        </md-button>
+        <md-button ng-click="search()" class="md-warn md-raised">
+          Search
         </md-button>
       </div>
     </md-dialog-content>
