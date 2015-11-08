@@ -1,19 +1,20 @@
 <md-dialog>
   <form>
-    <md-dialog-content class="splash-card">
+    <md-dialog-content style="padding-bottom: 0px;">
       <div ng-cloak>
-        <md-content>
+        <md-content class="splash-card-content">
           <md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab">
             <md-tab label="Budget">
               <md-content class="md-padding">
-                <h3 class="md-display-5">What is your Budget?</h3>
+                <!--<h3 class="md-display-5">What is your Budget? {{selectedOfferIndex}}</h3>-->
                 <md-grid-list
                   md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
                   md-row-height-gt-md="1:1" md-row-height="2:2"
                   md-gutter="12px" md-gutter-gt-sm="8px" >
-                  <md-grid-tile ng-repeat="offer in offers" ng-click="selectOffer(offer)"
+                  <md-grid-tile ng-repeat="offer in offers" ng-click="selectOffer($index)"
                                 md-rowspan="2" md-colspan="2" md-colspan-sm="1"
-                                ng-class="offer.className">
+                                ng-class="{true: 'selected', false: ''}[selected.offer.index === $index]"
+                                class="price-tile">
                     <h2>{{ offer.price }}</h2>
                   </md-grid-tile>
                 </md-grid-list>
@@ -21,20 +22,34 @@
             </md-tab>
             <md-tab label="Interests">
               <md-content class="md-padding">
-                <h3 class="md-display-5">Tab Two</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices</p>
+                <!--<h3 class="md-display-5">Select Interests</h3>-->
+                <md-checkbox ng-repeat="interest in interests"
+                             ng-model="selected.interests[$index]"
+                             ng-true-value="true"
+                             ng-false-value="false"
+                             class="interest-checkbox">
+                  {{ interest }}
+                </md-checkbox>
               </md-content>
             </md-tab>
             <md-tab label="three">
               <md-content class="md-padding">
-                <h3 class="md-display-5">Tab Three</h3>
+                <!--<h3 class="md-display-5">Tab Three</h3>-->
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices</p>
               </md-content>
             </md-tab>
           </md-tabs>
         </md-content>
       </div>
-
+      <div class="md-actions" layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()" class="md-primary">
+          Cancel
+        </md-button>
+        <md-button ng-click="next()" class="md-primary md-raised">
+          Next
+        </md-button>
+      </div>
     </md-dialog-content>
   </form>
 </md-dialog>

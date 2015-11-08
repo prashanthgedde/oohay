@@ -1,5 +1,6 @@
 app.controller('HomeCtrl', function($scope, uiGmapGoogleMapApi, $injector){
   var $mdDialog = $injector.get('$mdDialog');
+  var XolaService = $injector.get('XolaService');
   $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
 
   $scope.trip = {
@@ -19,19 +20,32 @@ app.controller('HomeCtrl', function($scope, uiGmapGoogleMapApi, $injector){
         });
         $scope.selectedTab = 0;
         $scope.offers = [
-          { price: '$250', className: 'red' },
-          { price: '$350', className: 'orange'  },
-          { price: '$500', className: 'yellow'  },
-          { price: '$750', className: 'blue'  },
-          { price: '$1000', className: 'red'  },
-          { price: '> $1000', className: 'orange'  }
+          { price: '$250'},
+          { price: '$350'},
+          { price: '$500'},
+          { price: '$750'},
+          { price: '$1000'},
+          { price: '> $1000'}
         ];
 
-        // select price
-        $scope.selectOffer = function(offer){
+        $scope.selected = {
+          offer: {
+            index: null
+          },
+          interests: {}
+        };
+
+
+        $scope.selectOffer = function(index){
+          $scope.selected.offer.index = index;
           $scope.selectedTab = 1;
         };
 
+        $scope.interests = XolaService.getEvents();
+
+        $scope.next = function(){
+          $scope.selectedTab++;
+        };
 
       },
       locals: { price: $scope.trip.price },

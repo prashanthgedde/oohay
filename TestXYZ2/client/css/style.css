@@ -232,27 +232,38 @@ ul#dnd-posts li.selected {
   min-height: 50%;
   display: block;
 }
-.splash-card{
-  height: 600px;
+.splash-card-content{
+  height: 450px;
   width: 600px;
 }
 
-md-grid-tile.red, md-grid-tile.orange, md-grid-tile.blue{
-  color: white;
+md-grid-tile.price-tile{
+  border: 2px solid #AFBBFF;
+  border-radius: 5px;
 }
 
-md-grid-tile.red{
-  background-color: red;
+md-grid-tile.price-tile:hover{
+  border: 2px solid #AFBBFF;
+  border-radius: 5px;
+  background-color: #F1F3FB;
 }
 
-md-grid-tile.orange{
-  background-color: orange;
+md-grid-tile.price-tile.selected {
+  border: 2px solid #85DCA1;
+  background-color: #F1FBF3;
 }
 
-md-grid-tile.blue{
-  background-color: blue;
+md-checkbox.interest-checkbox {
+  display: inline-block;
+  background-color: #DCDCDC;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 
-md-grid-tile.yellow{
-  background-color: yellow;
+md-checkbox.interest-checkbox .md-container{
+  left: 10px;
+}
+
+md-checkbox.interest-checkbox .md-label{
+  padding-left: 14px;
 }

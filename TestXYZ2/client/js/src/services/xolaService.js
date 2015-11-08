@@ -35,7 +35,6 @@ app.service('XolaService', function($injector) {
     "Marine Wildlife",
     "Motor Yacht",
     "Mountaineering",
-    "Movie",
     "Music/Rafting festival",
     "Ocean Cruises",
     "Off-road",
@@ -74,6 +73,7 @@ app.service('XolaService', function($injector) {
     "Zip-lining"
   ];
 
+  var exports = {};
   exports.getEvents = function(){
     return events;
   };
