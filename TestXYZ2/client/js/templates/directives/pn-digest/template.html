@@ -1,0 +1,34 @@
+<md-card class="daily-digest-card">
+  <md-progress-linear class="md-primary pn-digest-progress-bar" md-mode="indeterminate" ng-show="whenImageLoading"></md-progress-linear>
+  <md-card-content>
+    <div layout="row" layout-align="end start" ng-show="controlsVisible">
+      <md-menu md-offset="-115 10">
+        <md-button aria-label="Open demo menu" class="md-accent md-icon-button pn-digest-menu-btn" ng-click="$mdOpenMenu()">
+          <md-icon md-menu-origin>
+            <i class="material-icons">more_vert</i>
+          </md-icon>
+        </md-button>
+        <md-menu-content>
+          <md-menu-item>
+            <md-button ng-click="library($event)">Change Picture</md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button ng-click="action('delete', $event)">Remove</md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </div>
+    <div layout="row" layout-align="center center" style="height: 250px;" ng-show="controlsVisible">
+      <md-button class="md-fab md-warn md-icon-button" ng-click="view()">
+        <md-icon aria-label="edit">
+          <i class="material-icons">remove_red_eye</i>
+        </md-icon>
+      </md-button>
+    </div>
+    <div class="article-details">
+      <div class="date">{{digest.published_date | date}}</div>
+      <div class="title" ng-if="controlsVisible" contenteditable="true" ng-model="digest.title">{{digest.title}}</div>
+      <div class="title" ng-if="!controlsVisible">{{digest.title}}</div>
+    </div>
+  </md-card-content>
+</md-card>

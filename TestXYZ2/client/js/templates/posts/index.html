@@ -1,0 +1,48 @@
+<md-menu md-offset="0 -5">
+  <md-button aria-label="Open demo menu" class="md-fab md-accent md-icon-button fab-button-pull-right-up" ng-click="$mdOpenMenu()">
+    <md-icon md-menu-origin>
+      <i class="material-icons">more_vert</i>
+    </md-icon>
+  </md-button>
+  <md-menu-content width="3">
+    <md-menu-item>
+      <md-button ng-click="onClick($event, 'pickaday')">
+        <md-icon md-menu-align-target><i class="material-icons">event</i></md-icon>
+        Pick a day
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="onClick($event, 'create')" disabled="disabled">
+        <md-icon md-menu-align-target><i class="material-icons">add</i></md-icon>
+        Add
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="onClick($event, 'edit')" ng-disabled="isDisabled()">
+        <md-icon md-menu-align-target><i class="material-icons">create</i></md-icon>
+        Edit
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="onClick($event, 'delete')" ng-disabled="isDisabled()">
+        <md-icon md-menu-align-target>
+          <i class="material-icons">remove_circle_outline</i>
+        </md-icon>
+        Remove
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="onClick($event, 'state')" ng-disabled="isDisabled()">
+        <md-icon md-menu-align-target>
+          <i class="material-icons">flag</i>
+        </md-icon>
+        Change State
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>
+<md-data-table-toolbar>
+  <h2 class="md-title">Posts</h2>
+</md-data-table-toolbar>
+<pre class="ng-hide">{{ selected | json }}</pre>
+<ng-include src="'js/templates/posts/data-table.html'" onload="init()"></ng-include>

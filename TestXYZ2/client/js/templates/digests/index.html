@@ -1,0 +1,19 @@
+<md-button aria-label="Open demo menu"
+           class="md-fab md-accent md-icon-button fab-button-pull-right-up"
+  ng-click="add($event)">
+  <md-icon md-menu-origin>
+    <i class="material-icons">add</i>
+  </md-icon>
+</md-button>
+
+<md-data-table-toolbar>
+  <h2 class="md-title">Digests</h2>
+</md-data-table-toolbar>
+<md-content>
+  <pn-digest ng-repeat="digest in digests"
+             ng-model="digest"
+             index="$index"
+             trigger="trigger(type, index, event)"
+             layout-padding>
+  </pn-digest>
+</md-content>

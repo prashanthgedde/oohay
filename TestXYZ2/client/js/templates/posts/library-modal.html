@@ -1,0 +1,27 @@
+<md-dialog>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Post</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">
+            <i class="material-icons">close</i>
+          </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div ng-include="'js/templates/posts/data-table.html'"></div>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel()" class="md-primary">
+        Cancel
+      </md-button>
+      <md-button ng-click="ok()" class="md-primary md-raised">
+        Save
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
