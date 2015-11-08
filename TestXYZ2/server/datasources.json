@@ -30,5 +30,9 @@
         }
       }
     ]
+  },
+  "geoRest": {
+    "name": "geoRest",
+    "connector": "rest"
   }
 }

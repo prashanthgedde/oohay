@@ -1,0 +1,26 @@
+<md-data-table-container>
+  <table md-data-table md-row-select="selected" md-progress="deferred">
+    <thead md-order="query.filter.order" md-trigger="onOrderChange">
+    <tr>
+      <th order-by="title">Title</th>
+      <th order-by="site_name">Site</th>
+      <th order-by="state">State</th>
+      <th order-by="published_time">Published Time</th>
+      <th order-by="created">Created</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="post in posts">
+      <td>{{post.title}}</td>
+      <td>{{post.site_name}}</td>
+      <td>{{post.state}}</td>
+      <td>{{post.published_time | date}}</td>
+      <td>{{post.created | date}}</td>
+    </tr>
+    </tbody>
+  </table>
+</md-data-table-container>
+
+<md-data-table-toolbar layout-align="end">
+  <md-data-table-pagination md-limit="query.filter.limit" md-page="query.filter.skip" md-total="{{total}}" md-trigger="onPaginationChange"></md-data-table-pagination>
+</md-data-table-toolbar>

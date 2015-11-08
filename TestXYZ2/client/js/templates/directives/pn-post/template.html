@@ -1,0 +1,31 @@
+<md-button aria-label="Open demo menu"
+           style="float: right;"
+           class="md-fab md-primary md-icon-button fab-btn-close"
+           ng-click="remove(index, $event)">
+  <md-icon md-menu-origin>
+    <i class="material-icons">close</i>
+  </md-icon>
+</md-button>
+
+<md-card class="post-card">
+  <md-card-content style="padding: 0px;">
+    <div class="list card">
+      <div class="item no-padding">
+        <div pn-image="post.image" class="post-media"></div>
+      </div>
+      <div class="item-properties">
+        <div class="site-icon">
+          <img ng-src="img/favicons/{{post.favicon}}.png" width="45" height="45"/>
+        </div>
+        <div class="name-date">
+          <div class="sitename">{{ post.site_name }}</div>
+          <div class="date">{{ post.published_time | date }}</div>
+        </div>
+      </div>
+      <div class="item item-body">
+        <h2 ng-bind-html="post.title"></h2>
+        <div ng-bind-html="post.description"></div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>

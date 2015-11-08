@@ -1,0 +1,33 @@
+<md-dialog flex="50">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Change State</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon aria-label="Close dialog">
+            <i class="material-icons">close</i>
+          </md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <form>
+        <p>Selected State:</span> </p>
+        <md-radio-group ng-model="state">
+          <md-radio-button value="DRAFT" class="md-primary">DRAFT</md-radio-button>
+          <md-radio-button value="PUBLISHED">PUBLISHED</md-radio-button>
+        </md-radio-group>
+      </form>
+    </md-dialog-content>
+    <div class="md-actions" layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel()" class="md-primary">
+        Cancel
+      </md-button>
+      <md-button ng-click="ok()" class="md-primary md-raised">
+        Save
+      </md-button>
+    </div>
+  </form>
+</md-dialog>

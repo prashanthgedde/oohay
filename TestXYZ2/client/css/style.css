@@ -1,0 +1,258 @@
+.fab-button-pull-right-up{
+  right: 20px;
+  position: fixed;
+  margin-top: -35px !important;
+  z-index: 10;
+}
+
+.fab-btn-close{
+  float: right;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+}
+
+.time-date {
+  font-size: 14px !important;
+}
+
+pn-digest, pn-post{
+  display: inline-block;
+}
+
+pn-post{
+  margin-left: 15px;
+}
+
+.daily-digest-card {
+  width: 240px;
+  height: 426px;
+  display: inline-block;
+  background-color: gray;
+  background-position: top center;
+  background-size: cover;
+  border-radius: 8px;
+  position: relative;
+}
+
+.article-details {
+  color: #FFF;
+  position: absolute;
+  bottom: 0%;
+  padding: 60px 10px 10px 10px;
+  z-index: 50;
+
+  background-image: linear-gradient( to top, #000, rgba(115, 112, 112, 0) );
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  height: 15%;
+}
+
+.article-image{
+  background-color: gray;
+  background-position: top center;
+  background-size: cover;
+  height: 50%;
+}
+
+.article-details div.date{
+  font-weight: 100;
+  font-size: 110%;
+}
+.article-details div.title{
+  font-weight: 200;
+  font-size: 150%;
+  width: 220px;
+}
+
+img.thumbnail.photo-selected{
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.pn-digest-menu-btn{
+  margin-top: -28px !important;
+  margin-right: -5px !important;
+  z-index: 20;
+}
+
+.pn-digest-progress-bar{
+  margin-top: -5px;
+}
+
+.pn-digest.thmbnail{
+  display: inline-block;
+  float: left;
+  padding: 10px;
+  width: 150px;
+  height: 150px;
+}
+
+.pn-digest.thmbnail button.md-icon-button{
+  position: absolute;
+}
+
+md-dialog.fullscreen-dialog{
+  width: 98% !important;
+  height: 98% !important;
+  max-width: 98% !important;
+  max-height: 98% !important;
+}
+
+/**
+* post-item
+*/
+
+.post-card {
+  width: 240px;
+  height: 426px;
+  display: inline-block;
+  position: relative;
+}
+
+
+.post-media:after {
+  background-image: linear-gradient( to top, #000, rgba(255, 255, 255, 0) );
+  height: 100px;
+  display: block;
+  content: '';
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 100px;
+  z-index: 20;
+}
+
+.item-body{
+  border-top: none;
+  padding: 0px 10px 10px 10px;
+}
+
+.item h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.item-properties {
+  margin-top: -60px;
+  margin-left: 10px;
+  z-index: 24;
+  position: absolute;
+  font-size: 18px;
+}
+
+div.site-icon{
+  display: inline-block;
+}
+
+.name-date {
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.item-properties .sitename {
+  color: #fff;
+}
+
+.item-properties .date {
+  color: #BEBC87;
+}
+
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+ul#dnd-posts{
+  display: inline-block;
+}
+ul#dnd-posts,
+ul#dnd-posts > li {
+  position: relative;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+ul#dnd-posts {
+  min-height: 42px;
+  padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+ul#dnd-posts .dndDraggingSource {
+  display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+ul#dnd-posts li.ui-sortable-placeholder {
+  display: inline-block;
+  border: 1px dotted #0097FF;
+  border-radius: 5px;
+  visibility: visible !important;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+ul#dnd-posts li {
+  display: inline-block;
+}
+
+/**
+ * Show selected elements in green
+ */
+ul#dnd-posts li.selected {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.angular-google-map-container {
+  width: 100%;
+  min-height: 50%;
+  display: block;
+}
+.splash-card{
+  height: 600px;
+  width: 600px;
+}
+
+md-grid-tile.red, md-grid-tile.orange, md-grid-tile.blue{
+  color: white;
+}
+
+md-grid-tile.red{
+  background-color: red;
+}
+
+md-grid-tile.orange{
+  background-color: orange;
+}
+
+md-grid-tile.blue{
+  background-color: blue;
+}
+
+md-grid-tile.yellow{
+  background-color: yellow;
+}
