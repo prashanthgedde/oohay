@@ -3,14 +3,9 @@
  */
 
 var https = require('https');
-module.exports = function(apikey) {
+module.exports = function() {
   return {
-    performGet: function(hostName, path, responseCallback) {
-
-      var headers = {
-        'Content-Type': 'application/json',
-        'X-API-KEY': apikey
-      };
+    performGet: function(hostName, path, headers, responseCallback) {
 
       var options = {
         host: hostName,
@@ -19,7 +14,7 @@ module.exports = function(apikey) {
         headers: headers
       };
 
-      console.info("performing GET with host: "+hostName+", Path: "+path);
+      console.info("Performing HTTP GET with host: "+hostName+", Path: "+path);
 
       https.request(options, function(response) {
         //console.log('STATUS: ' + response.statusCode);
