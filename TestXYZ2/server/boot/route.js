@@ -12,6 +12,9 @@ var GOOGLE_HOST = "maps.googleapis.com";
 var GOOGLE_API_KEY = "AIzaSyCNavATmxBZgCR4Uzd4XGzOKbiZgt7mcNE";
 var GOOGLE_PLACES_API = "/maps/api/place/nearbysearch/json";
 
+var GEODE_HOST = "geode-demo.herokuapp.com";
+var GEODE_PLACES_API = "/findNearby.json";
+
 var httpUtil = require("../../common/httputil")();
 var geoUtil = require("../../common/geoutil")();
 var Q = require("../../node_modules/q/q");
@@ -39,25 +42,29 @@ module.exports = function(app) {
         var headers = {
           'Content-Type': 'application/json'
         };
-        console.info('Inside Promise...');
-        httpUtil.performGet(GOOGLE_HOST,
-          GOOGLE_PLACES_API + "?location=" + encodeURIComponent(paramObj.geo.lat + ", " + paramObj.geo.lon) + "&radius=400" +
-          "&types=airport&key=" + GOOGLE_API_KEY,
+        //console.info('Inside Promise...');
+        httpUtil.performGet(GEODE_HOST,
+          //GOOGLE_PLACES_API + "?location=" + encodeURIComponent(paramObj.geo.lat + ", " + paramObj.geo.lon) + "&radius=400" +
+          //"&types=airport&key=" + GOOGLE_API_KEY,
+          GEODE_PLACES_API + "?maxRows=10&fcode=AIRP&lat=" + paramObj.geo.lat + "&lng=" + paramObj.geo.lon + "&radius=200",
           headers,
           function responseCallback(statusCode, response) {
 
-            console.info("Response from Google: " + statusCode + ", Response: " + response);
+            //console.info("Response from Geode: " + statusCode + ", Response: " + response);
             if (statusCode != 200) {
-              res.status(500).send('Failed to fetch airports!');
+              res.status(500).match('Failed to fetch airports!');
               paramObj.geo.airport.available = false;
             } else {
               var airPorts = JSON.parse(response);
-              if (airPorts.status == "OK") {
-                paramObj.geo.airport.available = true;
-                paramObj.geo.airport.name = airPorts.results[0].name;
-                paramObj.geo.airport.address = airPorts.results[0].vicinity;
-              } else {
-                paramObj.geo.airport.available = false;
+              paramObj.geo.airport.available = false;
+              for (i = 0; i < airPorts.results.geonames.length; i++) {
+                var airp = airPorts.results.geonames[i];
+                if (airp.name.match(/municipal|ranch/i) == null) {
+                  paramObj.geo.airport.available = true;
+                  paramObj.geo.airport.name = airp.name + ", " + airp.adminName1;
+                  paramObj.geo.airport.dist = airp.distance;
+                  break;
+                }
               }
             }
             resolve(paramObj);
