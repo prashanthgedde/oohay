@@ -55,7 +55,7 @@ module.exports = function(app) {
 
           airports = underscore.filter(airports, function(airport) {
             //console.info('Checking for valid airport');
-            return airport.iata_code && airport.iata_code.length;
+            return airport.iata_code && airport.iata_code.length && airport.iata_code != "ONT" && airport.iata_code != "PIT" && airport.iata_code != "CLE";
           });
 
           console.info(airports.length + " Airports found for " + paramObj.geo.lat + ", " + paramObj.geo.lon);
@@ -64,6 +64,7 @@ module.exports = function(app) {
           if (airports.length) {
             paramObj.geo.airport.available = true;
             paramObj.geo.airport.name = airports[0].name;
+            paramObj.geo.airport.muncipality = airports[0].muncipality;
             paramObj.geo.airport.code = airports[0].iata_code;
             paramObj.geo.airport.dist = airports[0].distance;
           }
@@ -135,7 +136,8 @@ module.exports = function(app) {
           //console.info("Lat: "+lat+", lon: "+lon);
           var dist = geoUtil.getDistanceFromLatLonInKm(slat, slon, lat, lon);
 
-          if (dist <= DISTANCE_THRESHOLD) {
+          if (dist <= DISTANCE_THRESHOLD || data.name.match(/test|title|adjustment/i)) {
+            // Records not eligible
             continue;
           }
 
