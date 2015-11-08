@@ -18,6 +18,8 @@ var GEODE_PLACES_API = "/findNearby.json";
 var httpUtil = require("../../common/httputil")();
 var geoUtil = require("../../common/geoutil")();
 var Q = require("../../node_modules/q/q");
+var opengraph = require('../../common/opengraph.js');
+var underscore = require("../../node_modules/underscore/underscore")
 
 module.exports = function(app) {
 
@@ -36,6 +38,40 @@ module.exports = function(app) {
       'X-API-KEY': XOLA_API_KEY
     };
 
+
+    function retrieveAirPortsFromGlobefeed(paramObj) {
+
+      //console.info('creating promise for retrieveAirPortsFromGeoloc');
+
+      return Q.promise(function(resolve, reject, notify) {
+
+        //console.info('About to invoke http req on globefeed');
+        var url = "http://airport.globefeed.com/US_Nearest_Airport_Result.asp?lat=" + paramObj.geo.lat + "&lng=" + paramObj.geo.lon;
+        opengraph.getHTML(url, function(html) {
+
+          var airports = opengraph.parse(html);
+          //console.info('opengraph returned: ');
+          //console.info(airports);
+
+          airports = underscore.filter(airports, function(airport) {
+            //console.info('Checking for valid airport');
+            return airport.iata_code && airport.iata_code.length;
+          });
+
+          console.info(airports.length + " Airports found for " + paramObj.geo.lat + ", " + paramObj.geo.lon);
+
+          paramObj.geo.airport.available = false;
+          if (airports.length) {
+            paramObj.geo.airport.available = true;
+            paramObj.geo.airport.name = airports[0].name;
+            paramObj.geo.airport.code = airports[0].iata_code;
+            paramObj.geo.airport.dist = airports[0].distance;
+          }
+          resolve(paramObj);
+        });
+      });
+    }
+
     function retrieveAirPort(paramObj) {
       console.info('creating promise');
       return Q.promise(function(resolve, reject, notify) {
@@ -52,6 +88,7 @@ module.exports = function(app) {
 
             //console.info("Response from Geode: " + statusCode + ", Response: " + response);
             if (statusCode != 200) {
+              console.error("Failed to find nearest airports for " + paramObj.geo.lat + ", " + paramObj.geo.lon);
               res.status(500).match('Failed to fetch airports!');
               paramObj.geo.airport.available = false;
             } else {
@@ -80,10 +117,13 @@ module.exports = function(app) {
       function responseCallback(statusCode, response) {
 
         if (statusCode != 200) {
+          console.error("Failed to fetch events from Xola!. Error: " + statusCode);
           res.status(500).send('Failed to fetch events!');
         }
 
         obj = JSON.parse(response);
+        console.info(obj.data.length + " events found from Xola!.");
+
         outObj = [];
         var promises = [];
         for (index = 0; index < obj.data.length; ++index) {
@@ -119,7 +159,7 @@ module.exports = function(app) {
           newObj.geo.dist = dist;
 
           //console.info('1')
-          promise = retrieveAirPort(newObj);
+          promise = retrieveAirPortsFromGlobefeed(newObj);
           //console.info('2')
           promise.then(function(resultObj) {
             if (resultObj.geo.airport.available == true) {

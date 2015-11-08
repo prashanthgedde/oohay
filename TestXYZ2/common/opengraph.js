@@ -90,5 +90,6 @@ exports.parse = function(html, options){
       airports.push(tmp);
     }
   });
-  console.info(airports);
+  //console.info(airports);
+  return airports;
 }
